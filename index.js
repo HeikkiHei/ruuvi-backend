@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const Note = require('./models/note')
+const Ruuvi = require('./models/ruuvi')
 
 const cors = require('cors')
 
@@ -9,35 +9,37 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('build'))
 
-app.get('/api/notes', (request, response) => {
-  Note.find({}).then(notes => {
-    response.json(notes.map(note => note.toJSON()))
+app.get('/api/ruuvis', (request, response) => {
+  Ruuvi.find({}).then(ruuvis => {
+    response.json(ruuvis.map(ruuvi => ruuvi.toJSON()))
   })
 })
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/ruuvis', (request, response) => {
   const body = request.body
 
-  if (body.content === undefined) {
-    return response.status(400).json({ error: 'content missing' })
+  if (body.temperature === undefined) {
+    return response.status(400).json({ error: 'temperature missing' })
   }
 
-  const note = new Note({
-    content: body.content,
-    important: body.important || false,
-    date: new Date(),
+  const ruuvi = new Ruuvi({
+    temperature: body.temperature,
+    humidity: body.humidity,
+    data_format: body.data_format,
+    identifier: body.identifier,
+    pressure: body.pressure,
   })
 
-  note.save().then(savedNote => {
-    response.json(savedNote.toJSON())
+  ruuvi.save().then(savedRuuvi => {
+    response.json(savedRuuvi.toJSON())
   })
 })
 
-app.get('/api/notes/:id', (request, response, next) => {
-  Note.findById(request.params.id)
-    .then(note => {
-      if (note) {
-        response.json(note.toJSON())
+app.get('/api/ruuvis/:id', (request, response, next) => {
+  Ruuvi.findById(request.params.id)
+    .then(ruuvi => {
+      if (ruuvi) {
+        response.json(ruuvi.toJSON())
       } else {
         response.status(404).end()
       }
@@ -45,25 +47,28 @@ app.get('/api/notes/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.delete('/api/notes/:id', (request, response, next) => {
-  Note.findByIdAndRemove(request.params.id)
+app.delete('/api/ruuvis/:id', (request, response, next) => {
+  Ruuvi.findByIdAndRemove(request.params.id)
     .then(result => {
       response.status(204).end()
     })
     .catch(error => next(error))
 })
 
-app.put('/api/notes/:id', (request, response, next) => {
+app.put('/api/ruuvis/:id', (request, response, next) => {
   const body = request.body
 
-  const note = {
-    content: body.content,
-    important: body.important,
+  const ruuvi = {
+    temperature: body.temperature,
+    humidity: body.humidity,
+    data_format: body.data_format,
+    identifier: body.identifier,
+    pressure: body.pressure,
   }
 
-  Note.findByIdAndUpdate(request.params.id, note, { new: true })
-    .then(updatedNote => {
-      response.json(updatedNote.toJSON())
+  Ruuvi.findByIdAndUpdate(request.params.id, ruuvi, { new: true })
+    .then(updatedRuuvi => {
+      response.json(updatedRuuvi.toJSON())
     })
     .catch(error => next(error))
 })
@@ -79,14 +84,14 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError' && error.kind == 'ObjectId') {
     return response.status(400).send({ error: 'malformatted id' })
-  } 
+  }
 
   next(error)
 }
 
 app.use(errorHandler)
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)

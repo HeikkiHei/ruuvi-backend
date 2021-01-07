@@ -12,13 +12,15 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     console.log('error connecting to MongoDB:', error.message)
   })
 
-const noteSchema = new mongoose.Schema({
-  content: String,
-  date: Date,
-  important: Boolean,
+const ruuviSchema = new mongoose.Schema({
+  pressure: Number,
+  humidity: Number,
+  data_format: Number,
+  identifier: String,
+  temperature: Number
 })
 
-noteSchema.set('toJSON', {
+ruuviSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -26,4 +28,4 @@ noteSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Note', noteSchema)
+module.exports = mongoose.model('Ruuvi', ruuviSchema)
