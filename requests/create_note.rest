@@ -1,7 +1,0 @@
-POST https://ruuvi-backend.herokuapp.com/api/ruuvis
-Content-Type: application/json
-
-{
-  "temperature": "This is a post",
-  "important": false
-}

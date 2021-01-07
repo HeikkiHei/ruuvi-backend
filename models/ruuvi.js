@@ -13,11 +13,37 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   })
 
 const ruuviSchema = new mongoose.Schema({
-  pressure: Number,
-  humidity: Number,
-  data_format: Number,
-  identifier: String,
-  temperature: Number
+    tags: [
+      {
+        accelX: Number,
+        accelY: Number,
+        accelZ: Number,
+        createDate: Date,
+        dataFormat: Number,
+        defaultBackground: Number,
+        favorite: Boolean,
+        humidity: Number,
+        id: String,
+        measurementSequenceNumber: Number,
+        movementCounter: Number,
+        name: String,
+        pressure: Number,
+        rssi: Number,
+        temperature: Number,
+        txPower: Number,
+        updateAt: String,
+        voltage: Number
+      }
+    ],
+    batteryLevel: Number,
+    deviceId: String,
+    eventId: String,
+    location: {
+      accuracy: Number,
+      latitude: Number,
+      longitude: Number
+    },
+    time: String
 })
 
 ruuviSchema.set('toJSON', {
