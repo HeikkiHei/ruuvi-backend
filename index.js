@@ -17,9 +17,9 @@ app.get('/api/ruuvis', (request, response) => {
 
 app.post('/api/ruuvis', (request, response) => {
   const body = request.body
-
-  if (body.tags === undefined) {
-    return response.status(400).json({ error: 'tags missing' })
+  console.log('THIS IS BODY', body)
+  if (body.tags === undefined || body.location === undefined) {
+    return response.status(400).json({ error: 'tags or location missing' })
   }
 
   const ruuvi = new Ruuvi({
