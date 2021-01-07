@@ -18,11 +18,13 @@ const ruuviSchema = new mongoose.Schema({
         accelX: Number,
         accelY: Number,
         accelZ: Number,
+        connectable: Boolean,
         createDate: Date,
         dataFormat: Number,
         defaultBackground: Number,
         favorite: Boolean,
         humidity: Number,
+        humidityOffset: Number,
         id: String,
         measurementSequenceNumber: Number,
         movementCounter: Number,
@@ -38,11 +40,6 @@ const ruuviSchema = new mongoose.Schema({
     batteryLevel: Number,
     deviceId: String,
     eventId: String,
-    location: {
-      accuracy: Number,
-      latitude: Number,
-      longitude: Number
-    },
     time: String
 })
 

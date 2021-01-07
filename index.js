@@ -28,11 +28,13 @@ app.post('/api/ruuvis', (request, response) => {
         accelX: body.tags[0].accelX,
         accelY: body.tags[0].accelY,
         accelZ: body.tags[0].accelZ,
+        connectable: body.tags[0].connectable,
         createDate: body.tags[0].createDate,
         dataFormat: body.tags[0].dataFormat,
         defaultBackground: body.tags[0].defaultBackground,
         favorite: body.tags[0].favorite,
         humidity: body.tags[0].humidity,
+        humidityOffset: body.tags[0].humidityOffset,
         id: body.tags[0].id,
         measurementSequenceNumber: body.tags[0].measurementSequenceNumber,
         movementCounter: body.tags[0].movementCounter,
@@ -48,11 +50,6 @@ app.post('/api/ruuvis', (request, response) => {
     batteryLevel: body.batteryLevel,
     deviceId: body.deviceId,
     eventId: body.eventId,
-    location: {
-      accuracy: body.location.accuracy,
-      latitude: body.location.latitude,
-      longitude: body.location.longitude
-    },
     time: body.time
   })
 
@@ -90,11 +87,13 @@ app.put('/api/ruuvis/:id', (request, response, next) => {
         accelX: body.tags[0].accelX,
         accelY: body.tags[0].accelY,
         accelZ: body.tags[0].accelZ,
+        connectable: body.tags[0].connectable,
         createDate: body.tags[0].createDate,
         dataFormat: body.tags[0].dataFormat,
         defaultBackground: body.tags[0].defaultBackground,
         favorite: body.tags[0].favorite,
         humidity: body.tags[0].humidity,
+        humidityOffset: body.tags[0].humidityOffset,
         id: body.tags[0].id,
         measurementSequenceNumber: body.tags[0].measurementSequenceNumber,
         movementCounter: body.tags[0].movementCounter,
@@ -110,11 +109,6 @@ app.put('/api/ruuvis/:id', (request, response, next) => {
     batteryLevel: body.batteryLevel,
     deviceId: body.deviceId,
     eventId: body.eventId,
-    location: {
-      accuracy: body.location.accuracy,
-      latitude: body.location.latitude,
-      longitude: body.location.longitude
-    },
     time: body.time
   }
 
