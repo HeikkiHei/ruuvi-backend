@@ -7,6 +7,8 @@ Content-Type: application/json
       "accelX": 0,
       "accelY": 0,
       "accelZ": 1,
+      "connectable": false,
+      "createDate": "2020-05-02T18:58:25+0300",
       "dataFormat": 3,
       "defaultBackground": 6,
       "favorite": true,
@@ -26,10 +28,5 @@ Content-Type: application/json
   "batteryLevel": 18,
   "deviceId": "a3af7fe3-03c6-47ba-ac07-8c800f59aff3",
   "eventId": "011ccc56-a0b8-4d22-8f50-8a9c0c1f95da",
-  "location": {
-    "accuracy": 2000,
-    "latitude": 0,
-    "longitude": 0
-  },
   "time": "2020-05-02T18:58:25+0300"
 }
