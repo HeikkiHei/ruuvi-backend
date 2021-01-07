@@ -1,0 +1,10 @@
+POST https://ruuvi-backend.herokuapp.com/api/ruuvis
+Content-Type: application/json
+
+{
+    "temperature": 14.0,
+    "humidity": 35.8,
+    "data_format": 4,
+    "identifier": "G",
+    "pressure": 999.9
+}

@@ -18,16 +18,16 @@ app.get('/api/ruuvis', (request, response) => {
 app.post('/api/ruuvis', (request, response) => {
   const body = request.body
 
-  if (body.temperature === undefined) {
-    return response.status(400).json({ error: 'temperature missing' })
+  if (body.tags === undefined) {
+    return response.status(400).json({ error: 'tags missing' })
   }
 
   const ruuvi = new Ruuvi({
-    temperature: body.temperature,
-    humidity: body.humidity,
-    data_format: body.data_format,
-    identifier: body.identifier,
-    pressure: body.pressure,
+    temperature: body.tags.temperature,
+    humidity: body.tags.humidity,
+    data_format: body.tags.data_format,
+    identifier: body.tags.identifier,
+    pressure: body.tags.pressure,
   })
 
   ruuvi.save().then(savedRuuvi => {
@@ -59,11 +59,11 @@ app.put('/api/ruuvis/:id', (request, response, next) => {
   const body = request.body
 
   const ruuvi = {
-    temperature: body.temperature,
-    humidity: body.humidity,
-    data_format: body.data_format,
-    identifier: body.identifier,
-    pressure: body.pressure,
+    temperature: body.tags.temperature,
+    humidity: body.tags.humidity,
+    data_format: body.tags.data_format,
+    identifier: body.tags.identifier,
+    pressure: body.tags.pressure,
   }
 
   Ruuvi.findByIdAndUpdate(request.params.id, ruuvi, { new: true })
