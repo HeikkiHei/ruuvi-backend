@@ -23,11 +23,37 @@ app.post('/api/ruuvis', (request, response) => {
   }
 
   const ruuvi = new Ruuvi({
-    temperature: body.tags.temperature,
-    humidity: body.tags.humidity,
-    data_format: body.tags.data_format,
-    identifier: body.tags.identifier,
-    pressure: body.tags.pressure,
+    tags: [
+      {
+        accelX: body.tags.accelX,
+        accelY: body.tags.accelY,
+        accelZ: body.tags.accelZ,
+        createDate: body.tags.createDate,
+        dataFormat: body.tags.dataFormat,
+        defaultBackground: body.tags.defaultBackground,
+        favorite: body.tags.favorite,
+        humidity: body.tags.humidity,
+        id: body.tags.id,
+        measurementSequenceNumber: body.tags.measurementSequenceNumber,
+        movementCounter: body.tags.movementCounter,
+        name: body.tags.name,
+        pressure: body.tags.pressure,
+        rssi: body.tags.rssi,
+        temperature: body.tags.temperature,
+        txPower: body.tags.txPower,
+        updateAt: body.tags.updateAt,
+        voltage: body.tags.voltage
+      }
+    ],
+    batteryLevel: body.batteryLevel,
+    deviceId: body.deviceId,
+    eventId: body.eventId,
+    location: {
+      accuracy: body.location.accuracy,
+      latitude: body.location.latitude,
+      longitude: body.location.longitude
+    },
+    time: body.time
   })
 
   ruuvi.save().then(savedRuuvi => {
@@ -59,11 +85,37 @@ app.put('/api/ruuvis/:id', (request, response, next) => {
   const body = request.body
 
   const ruuvi = {
-    temperature: body.tags.temperature,
-    humidity: body.tags.humidity,
-    data_format: body.tags.data_format,
-    identifier: body.tags.identifier,
-    pressure: body.tags.pressure,
+    tags: [
+      {
+        accelX: body.tags.accelX,
+        accelY: body.tags.accelY,
+        accelZ: body.tags.accelZ,
+        createDate: body.tags.createDate,
+        dataFormat: body.tags.dataFormat,
+        defaultBackground: body.tags.defaultBackground,
+        favorite: body.tags.favorite,
+        humidity: body.tags.humidity,
+        id: body.tags.id,
+        measurementSequenceNumber: body.tags.measurementSequenceNumber,
+        movementCounter: body.tags.movementCounter,
+        name: body.tags.name,
+        pressure: body.tags.pressure,
+        rssi: body.tags.rssi,
+        temperature: body.tags.temperature,
+        txPower: body.tags.txPower,
+        updateAt: body.tags.updateAt,
+        voltage: body.tags.voltage
+      }
+    ],
+    batteryLevel: body.batteryLevel,
+    deviceId: body.deviceId,
+    eventId: body.eventId,
+    location: {
+      accuracy: body.location.accuracy,
+      latitude: body.location.latitude,
+      longitude: body.location.longitude
+    },
+    time: body.time
   }
 
   Ruuvi.findByIdAndUpdate(request.params.id, ruuvi, { new: true })
