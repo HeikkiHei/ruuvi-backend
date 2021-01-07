@@ -46,7 +46,7 @@ const ruuviSchema = new mongoose.Schema({
 ruuviSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
-    delete returnedObject.tags._id
+    delete returnedObject.tags[0]._id
     delete returnedObject._id
     delete returnedObject.__v
   }
