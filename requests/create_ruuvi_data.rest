@@ -1,4 +1,4 @@
-POST https://ruuvi-backend.herokuapp.com/api/ruuvis
+POST http://localhost:3001/api/ruuvis
 Content-Type: application/json
 
 {
@@ -13,6 +13,7 @@ Content-Type: application/json
       "defaultBackground": 6,
       "favorite": true,
       "humidity": 42,
+      "humidityOffset": 0,
       "id": "10:0B:14:29:1B:01",
       "measurementSequenceNumber": 0,
       "movementCounter": 0,
