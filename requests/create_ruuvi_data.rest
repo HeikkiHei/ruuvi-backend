@@ -1,4 +1,4 @@
-POST http://localhost:3001/api/ruuvis
+POST https://ruuvi-backend.herokuapp.com/api/ruuvis
 Content-Type: application/json
 
 {
