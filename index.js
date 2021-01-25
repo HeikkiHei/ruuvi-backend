@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.static('build'))
 
 app.get('/', (request, response) => {
-  response.send('<h>Try /api/ruuvis instead!</h>')
+  response.send('<h>Try /api/ruuvis instead!!</h>')
 })
 
 app.get('/api/ruuvis', (request, response) => {
